@@ -141,13 +141,7 @@ void setup() {
 	}
 
 	// Initialize soidiers and their position
-  soldierX = new float[6];
-  soldierY = new float[6];
-
-  for(int i = 0; i < soldierX.length; i++){
-    soldierX[i] = random(-SOIL_SIZE, width);
-    soldierY[i] = SOIL_SIZE * ( i * 4 + floor(random(4)));
-  }
+  
 	// Initialize cabbages and their position
   cabbageX = new float[6];
   cabbageY = new float[6];
@@ -366,32 +360,6 @@ void draw() {
 		image(groundhogDisplay, playerX, playerY);
 
 		// Soldiers
-    for(int i = 0; i < soldierX.length; i++){
-
-      soldierX[i] += soldierSpeed;
-      if(soldierX[i] >= width) soldierX[i] = -SOIL_SIZE;
-
-      image(soldier, soldierX[i], soldierY[i]);
-      
-        if(soldierX[i] + SOIL_SIZE > playerX    
-        && soldierX[i] < playerX + SOIL_SIZE   
-        && soldierY[i] + SOIL_SIZE > playerY    
-        && soldierY[i] < playerY + SOIL_SIZE) { 
-        playerHealth --;
-        if(playerHealth == 0){
-          gameState = GAME_RUN;
-              }else{
-
-          playerX = PLAYER_INIT_X;
-          playerY = PLAYER_INIT_Y;
-          playerCol = (int) playerX / SOIL_SIZE;
-          playerRow = (int) playerY / SOIL_SIZE;
-          soilHealth[playerCol][playerRow + 1] = 15;
-          playerMoveTimer = 0;
-        }
-
-      }
-    }
 		// > Remember to stop player's moving! (reset playerMoveTimer)
 		// > Remember to recalculate playerCol/playerRow when you reset playerX/playerY!
 		// > Remember to reset the soil under player's original position!
